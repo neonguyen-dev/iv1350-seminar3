@@ -1,21 +1,31 @@
 package se.kth.iv1350.seminar3.integration;
 
+/**
+ * Is responsible for creating the external systems
+ */
 public class ExternalSystemCreator {
-    private DiscountSystem discountDbHandler;
     private InventorySystem inventoryDbHandler;
     private AccountingSystem accountingDbHandler;
 
-    public ExternalSystemCreator(){
-        discountDbHandler = new DiscountSystem();
+    /**
+     * Creates a new instance and creates the external systems.
+     * @param balance Amount that is in the accounting system.
+     */
+    public ExternalSystemCreator(float balance){
         inventoryDbHandler =  new InventorySystem();
-        accountingDbHandler = new AccountingSystem();
+        accountingDbHandler = new AccountingSystem(balance);
     }
-    public DiscountSystem getDiscountSystem(){
-        return discountDbHandler;
-    }
+
+    /**
+     * @return The external inventory system
+     */
     public InventorySystem getInventorySystem(){
         return inventoryDbHandler;
     }
+
+    /**
+     * @return The external accounting system
+     */
     public AccountingSystem getAccountingSystem(){
         return accountingDbHandler;
     }

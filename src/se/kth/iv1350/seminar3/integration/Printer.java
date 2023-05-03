@@ -1,10 +1,16 @@
 package se.kth.iv1350.seminar3.integration;
 
-public class Printer {
-    public Printer(){
+import se.kth.iv1350.seminar3.model.Receipt;
 
-    }
-    public void PrintReceipt(){
-        
+/**
+ * The printer that is responsible for the receipt being printed
+ */
+public class Printer {
+    /**
+     * Prints the receipt
+     * @param receipt The receipt that is being printed
+     */
+    public void PrintReceipt(Receipt receipt){
+        System.out.println(receipt.receiptTotString());
     }
 }
