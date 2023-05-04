@@ -30,14 +30,14 @@ public class Receipt {
         builder.append("POS\n\n");
 
         builder.append("Sale Time: ");
-        builder.append(saleTime + "\n\n");
+        builder.append(saleTime.getHour() + ":" + saleTime.getMinute() + "\n\n");
 
         builder.append("Purchased Items:\n");
 
         for (int i = 0; i < sale.getItems().size(); i++) {
             builder.append(sale.getItems().get(i).getSaleQuantity() +  " " +
                            sale.getItems().get(i).getName() + " " + 
-                           sale.getItems().get(i).getPrice() +  " per piece"+ "\n");
+                           sale.getItems().get(i).getPrice() +  " per piece\n");
         }
         builder.append("\n\nTotal Amount: " + sale.amount.getTotalAmount());
         builder.append("\nVat Amount: " + sale.amount.getVatAmount());

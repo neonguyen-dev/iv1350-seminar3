@@ -2,7 +2,6 @@ package se.kth.iv1350.seminar3.model;
 
 import se.kth.iv1350.seminar3.Amount;
 import se.kth.iv1350.seminar3.ItemDTO;
-import se.kth.iv1350.seminar3.integration.*;
 import java.util.ArrayList;
 
 /**
@@ -10,13 +9,14 @@ import java.util.ArrayList;
  */
 public class Sale {
     Amount amount;
-    ArrayList<ItemDTO> items = new ArrayList<ItemDTO>();
+    ArrayList<ItemDTO> items;
 
     /**
      * Creates a new instance of Sale and assigns the amount to pay to 0.
      */
-    public Sale(InventorySystem inventorySystem) {
+    public Sale() {
         amount = new Amount(0, 0);
+        items = new ArrayList<ItemDTO>();
     }
 
     /**

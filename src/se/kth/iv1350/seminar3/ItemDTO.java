@@ -77,4 +77,11 @@ public class ItemDTO {
     public void setQuantity(int saleQuantity){
         quantity -= saleQuantity;
     }
+
+    /**
+     * Resets the sale quantity after sale
+     */
+    public void resetSaleQuantity() {
+        saleQuantity = 0;
+    }
 }

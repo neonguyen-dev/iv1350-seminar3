@@ -33,7 +33,7 @@ public class Controller {
      * Inititates a new sale
      */
     public void startSale(){
-        sale = new Sale(inventoryDbHandler);
+        sale = new Sale();
     }
 
     /**
