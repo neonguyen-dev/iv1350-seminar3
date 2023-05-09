@@ -63,6 +63,10 @@ public class ItemDTO {
         return saleQuantity;
     }
 
+    public float getRunningTotal(){
+        return price * (1 + vatRate.rate);
+    }
+
     /**
      * Increments the quantity in given sale
      */
