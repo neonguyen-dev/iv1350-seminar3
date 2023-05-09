@@ -24,7 +24,7 @@ public class CashPaymentTest {
         String expectedResult = Integer.toString(Math.round(sale.getAmount().getRunningTotal() + 0.5f));
         String result = Integer.toString(payment.getTotal());
 
-        assertTrue(result.contains(expectedResult));
+        assertTrue("Payment is incorrect",result.contains(expectedResult));
     }
 
     @Test
@@ -41,6 +41,6 @@ public class CashPaymentTest {
         String expectedResult = Integer.toString(paidAmount - payment.getTotal());
         String result = Float.toString(payment.getChange());
 
-        assertTrue(result.contains(expectedResult));
+        assertTrue("Change is incorrect",result.contains(expectedResult));
     }
 }

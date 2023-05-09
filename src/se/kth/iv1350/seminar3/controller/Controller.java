@@ -41,13 +41,14 @@ public class Controller {
      * @param itemSerial Used as an item identifier to match it with something in the inventory system
      * @param quantity The amount of pieces of that item
      */
-    public void scanItem(int itemSerial, int quantity){
+    public ItemDTO scanItem(int itemSerial, int quantity){
         ItemDTO mathchingItem = inventoryDbHandler.findItem(itemSerial);
         if(mathchingItem != null){
             sale.updateSaleInfo(mathchingItem, quantity);
+            return mathchingItem;
         }
         else
-            System.out.println("Item not found");
+            return null;
     }
 
     /**

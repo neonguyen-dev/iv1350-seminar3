@@ -46,7 +46,8 @@ public class ReceiptTest {
 
 
         String result = receipt.receiptTotString();
-        assertTrue(result.contains(expectedResult));
-        assertTrue(result.contains(Integer.toString(saleTime.getHour())));
+        assertTrue("Wrong prinout",result.contains(expectedResult));
+        assertTrue("Wrong hour" ,result.contains(Integer.toString(saleTime.getHour())));
+        assertTrue("Wrong minute",result.contains(Integer.toString(saleTime.getMinute())));
     }
 }
