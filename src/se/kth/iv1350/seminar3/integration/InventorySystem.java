@@ -59,15 +59,21 @@ public class InventorySystem {
     /**
      * Method for finding an item after it has been scanned.
      * @param serialNumber Used as an item identifier.
-     * @return If the item is in inventory the specified item is returned with its given data. Else return null.
+     * @return The matching item with given item identifier.
+     * @throws ItemNotFoundException Exception for item identifier not being found.
+     * @throws DatabaseCouldNotBeFoundException
      */
-    public ItemDTO findItem(int serialNumber) {
+    public ItemDTO findItem(int serialNumber) throws ItemNotFoundException, DatabaseCouldNotBeFoundException{
+        if(serialNumber == 6){
+            throw new DatabaseCouldNotBeFoundException();
+        }
+
         for (int i = 0; i < Items.values().length; i++) {
             if (items.get(i).getSerialNumber() == serialNumber) {
                 return items.get(i);
             }
         }
-        return null;
+        throw new ItemNotFoundException(serialNumber);
     }
 
     /**

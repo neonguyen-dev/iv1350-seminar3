@@ -42,7 +42,7 @@ public class Sale {
     /**
      * @return The amount of the whole sale
      */
-    public Amount getAmount(){
+    public Amount  getAmount(){
         return amount;
     }
 

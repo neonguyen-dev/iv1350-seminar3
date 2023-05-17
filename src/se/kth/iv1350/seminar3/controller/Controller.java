@@ -3,6 +3,7 @@ package se.kth.iv1350.seminar3.controller;
 import se.kth.iv1350.seminar3.integration.*;
 import se.kth.iv1350.seminar3.model.*;
 import se.kth.iv1350.seminar3.Amount;
+import se.kth.iv1350.seminar3.FileLogger;
 import se.kth.iv1350.seminar3.ItemDTO;
 
 /**
@@ -16,6 +17,8 @@ public class Controller {
     POS posSystem;
     Sale sale;
     CashPayment payment;
+    private FileLogger fileLogger;
+
     /**
      * Creates a new instance. The controller is being initiated and assigns the dbHandlers, posSystem and printer.
      * @param printer Represents printer that is inititated through main
@@ -27,6 +30,7 @@ public class Controller {
         accountingDbHandler = creator.getAccountingSystem();
         posSystem = new POS(balance);
         this.printer = printer;
+        fileLogger = new FileLogger();
     }
 
     /**
@@ -40,15 +44,18 @@ public class Controller {
      * Scans an item.
      * @param itemSerial Used as an item identifier to match it with something in the inventory system
      * @param quantity The amount of pieces of that item
+     * @return Item with matching item identifier
+     * @throws ItemNotFoundException Exception for invalid item identifier
      */
-    public ItemDTO scanItem(int itemSerial, int quantity){
-        ItemDTO mathchingItem = inventoryDbHandler.findItem(itemSerial);
-        if(mathchingItem != null){
+    public ItemDTO scanItem(int itemSerial, int quantity) throws ItemNotFoundException, DatabaseCouldNotBeFoundException{
+        try {
+            ItemDTO mathchingItem = inventoryDbHandler.findItem(itemSerial);
             sale.updateSaleInfo(mathchingItem, quantity);
             return mathchingItem;
+        } catch (ItemNotFoundException e) {
+            fileLogger.log(e.getMessage());
+            throw new ItemNotFoundException(itemSerial);
         }
-        else
-            return null;
     }
 
     /**
