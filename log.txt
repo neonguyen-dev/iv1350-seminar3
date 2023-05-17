@@ -1,4 +1,4 @@
 Item with identifier "4" could not be found in InventorySystem
 Item with identifier "5" could not be found in InventorySystem
-Item with identifier "6" could not be found in InventorySystem
+InventorySystem could not be reached
 Item with identifier "7" could not be found in InventorySystem

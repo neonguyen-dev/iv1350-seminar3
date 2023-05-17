@@ -1,6 +1,7 @@
 package se.kth.iv1350.seminar3.view;
 
 import se.kth.iv1350.seminar3.controller.*;
+import se.kth.iv1350.seminar3.integration.DatabaseCouldNotBeFoundException;
 import se.kth.iv1350.seminar3.integration.ItemNotFoundException;
 
 /**
@@ -30,8 +31,11 @@ public class View {
             } catch (ItemNotFoundException e) {
                 System.out.println("Item with serial number "  + e.getInvalidItemIdentifier() + " was not found");
             }
+            catch(DatabaseCouldNotBeFoundException e){
+                System.out.println("Database could not be reached");
+            }
         }
-        contr.endSale();
+        contr.endSale   ();
         contr.pay(200);
     }
 }

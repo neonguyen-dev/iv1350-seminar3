@@ -61,7 +61,7 @@ public class InventorySystem {
      * @param serialNumber Used as an item identifier.
      * @return The matching item with given item identifier.
      * @throws ItemNotFoundException Exception for item identifier not being found.
-     * @throws DatabaseCouldNotBeFoundException
+     * @throws DatabaseCouldNotBeFoundException Exception for database call, hardcoded since it is a simulation.
      */
     public ItemDTO findItem(int serialNumber) throws ItemNotFoundException, DatabaseCouldNotBeFoundException{
         if(serialNumber == 6){

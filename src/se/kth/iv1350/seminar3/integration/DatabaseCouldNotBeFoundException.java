@@ -5,6 +5,6 @@ public class DatabaseCouldNotBeFoundException extends Exception {
      * Creates a new instance.
      */
     public DatabaseCouldNotBeFoundException(){
-        super("Database could not be reached");
+        super("InventorySystem could not be reached");
     }
 }

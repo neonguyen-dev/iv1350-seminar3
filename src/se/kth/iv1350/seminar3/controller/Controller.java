@@ -54,7 +54,11 @@ public class Controller {
             return mathchingItem;
         } catch (ItemNotFoundException e) {
             fileLogger.log(e.getMessage());
-            throw new ItemNotFoundException(itemSerial);
+            throw e;
+        }
+        catch(DatabaseCouldNotBeFoundException e){
+            fileLogger.log(e.getMessage());
+            throw e;
         }
     }
 
