@@ -61,13 +61,14 @@ public class Sale {
         posSystem.addPayment(payment);
         posSystem.LogSale(this);
         posSystem.updateBalance();
+        notifyObservers(payment);
     }
 
     /**
      * Adds a single sale observer.
      * @param saleObserver The sale observer to be added.
      */
-    public void addSaleObservers(SaleObserver saleObserver){
+    public void addSaleObserver(SaleObserver saleObserver){
         saleObservers.add(saleObserver);
     }
    
@@ -75,13 +76,13 @@ public class Sale {
      * Adds a list of sale observers.
      * @param saleObservers List of sale observers.
      */
-    public void addSaleObservers(List<SaleObserver> saleObservers){
-        for (SaleObserver observer : saleObservers) {
-            this.saleObservers.add(observer);
-        }
+    public void addSaleObserver(List<SaleObserver> saleObservers){
+        this.saleObservers.addAll(saleObservers);
     }
 
-    public void notifyObservers(){
-        
+    public void notifyObservers(CashPayment payment){
+        for (SaleObserver observer : saleObservers) {
+            observer.newSale(payment);
+        }
     }
 }

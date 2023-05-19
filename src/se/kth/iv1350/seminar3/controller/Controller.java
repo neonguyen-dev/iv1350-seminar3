@@ -2,7 +2,9 @@ package se.kth.iv1350.seminar3.controller;
 
 import se.kth.iv1350.seminar3.integration.*;
 import se.kth.iv1350.seminar3.logger.FileLogger;
+import se.kth.iv1350.seminar3.logger.TotalRevenueFileOutput;
 import se.kth.iv1350.seminar3.model.*;
+import se.kth.iv1350.seminar3.view.TotalRevenueView;
 import se.kth.iv1350.seminar3.Amount;
 import se.kth.iv1350.seminar3.ItemDTO;
 
@@ -10,14 +12,15 @@ import se.kth.iv1350.seminar3.ItemDTO;
  * Represents the Controller of the MVC-layer.
  */
 public class Controller {
-    Printer printer;
-    ExternalSystemCreator creator;
-    InventorySystem inventoryDbHandler;
-    AccountingSystem accountingDbHandler;
-    POS posSystem;
-    Sale sale;
-    CashPayment payment;
+    private Printer printer;
+    private InventorySystem inventoryDbHandler;
+    private AccountingSystem accountingDbHandler;
+    private POS posSystem;
+    private Sale sale;
+    private CashPayment payment;
     private FileLogger fileLogger;
+    private TotalRevenueView totalRevenueView;
+    private TotalRevenueFileOutput totalRevenueFileOutput;
 
     /**
      * Creates a new instance. The controller is being initiated and assigns the dbHandlers, posSystem and printer.
@@ -31,6 +34,8 @@ public class Controller {
         posSystem = new POS(balance);
         this.printer = printer;
         fileLogger = new FileLogger();
+        totalRevenueView = new TotalRevenueView();
+        totalRevenueFileOutput = new TotalRevenueFileOutput();
     }
 
     /**
@@ -38,6 +43,8 @@ public class Controller {
      */
     public void startSale(){
         sale = new Sale();
+        sale.addSaleObserver(totalRevenueView);
+        sale.addSaleObserver(totalRevenueFileOutput);
     }
 
     /**
@@ -45,7 +52,8 @@ public class Controller {
      * @param itemSerial Used as an item identifier to match it with something in the inventory system
      * @param quantity The amount of pieces of that item
      * @return Item with matching item identifier
-     * @throws ItemNotFoundException Exception for invalid item identifier
+     * @throws ItemNotFoundException Exception in case of invalid item identifier
+     * @throws DatabaseCouldNotBeFoundException Exception in case of database not being found
      */
     public ItemDTO scanItem(int itemSerial, int quantity) throws ItemNotFoundException, DatabaseCouldNotBeFoundException{
         try {
@@ -81,5 +89,9 @@ public class Controller {
         inventoryDbHandler.updateInventorySystem(sale);
         accountingDbHandler.updateAccountingSystem(sale);
         printer.PrintReceipt(new Receipt(sale, payment));
+
+        for (ItemDTO items : sale.getItems()) {
+            items.resetSaleQuantity();
+        }
     }
 }
