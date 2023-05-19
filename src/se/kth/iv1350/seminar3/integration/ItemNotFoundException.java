@@ -1,5 +1,8 @@
 package se.kth.iv1350.seminar3.integration;
 
+/**
+ * Exception for item not being found.
+ */
 public class ItemNotFoundException extends Exception{
     private int serialNumber;
 
@@ -12,6 +15,9 @@ public class ItemNotFoundException extends Exception{
         this.serialNumber = serialNumber;
     }
 
+    /**
+     * @return Item identifier for an invalid item.
+     */
     public int getInvalidItemIdentifier(){
         return serialNumber;
     }

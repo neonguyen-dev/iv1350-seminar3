@@ -1,7 +1,7 @@
 package se.kth.iv1350.seminar3.integration;
 
 /**
- * Is responsible for creating the external systems
+ * Responsible for creating the external systems
  */
 public class ExternalSystemCreator {
     private InventorySystem inventoryDbHandler;

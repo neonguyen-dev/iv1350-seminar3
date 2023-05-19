@@ -2,21 +2,25 @@ package se.kth.iv1350.seminar3.model;
 
 import se.kth.iv1350.seminar3.Amount;
 import se.kth.iv1350.seminar3.ItemDTO;
+import se.kth.iv1350.seminar3.SaleObserver;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the whole sale.
  */
 public class Sale {
-    Amount amount;
-    ArrayList<ItemDTO> items;
+    private Amount amount;
+    private ArrayList<ItemDTO> items;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
      * Creates a new instance of Sale and assigns the amount to pay to 0.
      */
     public Sale() {
         amount = new Amount(0, 0);
-        items = new ArrayList<ItemDTO>();
+        items = new ArrayList<>();
     }
 
     /**
@@ -51,5 +55,33 @@ public class Sale {
      */
     public ArrayList<ItemDTO> getItems(){
         return items;
+    }
+
+    public void pay(POS posSystem, CashPayment payment){
+        posSystem.addPayment(payment);
+        posSystem.LogSale(this);
+        posSystem.updateBalance();
+    }
+
+    /**
+     * Adds a single sale observer.
+     * @param saleObserver The sale observer to be added.
+     */
+    public void addSaleObservers(SaleObserver saleObserver){
+        saleObservers.add(saleObserver);
+    }
+   
+    /**
+     * Adds a list of sale observers.
+     * @param saleObservers List of sale observers.
+     */
+    public void addSaleObservers(List<SaleObserver> saleObservers){
+        for (SaleObserver observer : saleObservers) {
+            this.saleObservers.add(observer);
+        }
+    }
+
+    public void notifyObservers(){
+        
     }
 }

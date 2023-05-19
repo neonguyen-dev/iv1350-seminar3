@@ -1,9 +1,9 @@
 package se.kth.iv1350.seminar3.controller;
 
 import se.kth.iv1350.seminar3.integration.*;
+import se.kth.iv1350.seminar3.logger.FileLogger;
 import se.kth.iv1350.seminar3.model.*;
 import se.kth.iv1350.seminar3.Amount;
-import se.kth.iv1350.seminar3.FileLogger;
 import se.kth.iv1350.seminar3.ItemDTO;
 
 /**
@@ -77,9 +77,7 @@ public class Controller {
     public void pay(int paidAmount){
         payment = new CashPayment(paidAmount);
         payment.calculatePayment(sale.getAmount());
-        posSystem.addPayment(payment);
-        posSystem.LogSale(sale);
-        posSystem.updateBalance();
+        sale.pay(posSystem, payment);
         inventoryDbHandler.updateInventorySystem(sale);
         accountingDbHandler.updateAccountingSystem(sale);
         printer.PrintReceipt(new Receipt(sale, payment));

@@ -24,7 +24,7 @@ public class ControllerTest {
 
         //Test for ItemNotFoundException
         try {
-            inventorydBHandler.findItem(5);
+            inventorydBHandler.findItem(4);
             fail("Could find invalid item");
         } catch (ItemNotFoundException e) {
             assertTrue("ItemNoutFoundException is caught", true);

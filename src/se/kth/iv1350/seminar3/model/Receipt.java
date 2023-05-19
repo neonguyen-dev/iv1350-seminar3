@@ -39,9 +39,9 @@ public class Receipt {
                            sale.getItems().get(i).getName() + " " + 
                            sale.getItems().get(i).getPrice() +  " per piece\n");
         }
-        builder.append("\n\nTotal Amount: " + sale.amount.getTotalAmount());
-        builder.append("\nVat Amount: " + sale.amount.getVatAmount());
-        builder.append("\nRunning total: " + sale.amount.getRunningTotal());
+        builder.append("\n\nTotal Amount: " + sale.getAmount().getTotalAmount());
+        builder.append("\nVat Amount: " + sale.getAmount().getVatAmount());
+        builder.append("\nRunning total: " + sale.getAmount().getRunningTotal());
         
         builder.append("\n\nTo pay in cash: " + payment.getTotal());
         builder.append("\nPaid amount: " + payment.getPaidAmount());
