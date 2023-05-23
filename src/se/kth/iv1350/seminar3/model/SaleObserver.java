@@ -1,6 +1,4 @@
-package se.kth.iv1350.seminar3;
-
-import se.kth.iv1350.seminar3.model.CashPayment;
+package se.kth.iv1350.seminar3.model;
 
 /**
  * Observer for sale

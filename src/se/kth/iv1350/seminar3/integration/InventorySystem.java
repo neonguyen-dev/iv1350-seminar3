@@ -2,8 +2,6 @@ package se.kth.iv1350.seminar3.integration;
 
 import java.util.ArrayList;
 
-import se.kth.iv1350.seminar3.ItemDTO;
-import se.kth.iv1350.seminar3.VatRate;
 import se.kth.iv1350.seminar3.model.Sale;
 
 /**

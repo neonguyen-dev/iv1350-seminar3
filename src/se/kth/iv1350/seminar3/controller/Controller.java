@@ -5,8 +5,6 @@ import se.kth.iv1350.seminar3.logger.FileLogger;
 import se.kth.iv1350.seminar3.logger.TotalRevenueFileOutput;
 import se.kth.iv1350.seminar3.model.*;
 import se.kth.iv1350.seminar3.view.TotalRevenueView;
-import se.kth.iv1350.seminar3.Amount;
-import se.kth.iv1350.seminar3.ItemDTO;
 
 /**
  * Represents the Controller of the MVC-layer.

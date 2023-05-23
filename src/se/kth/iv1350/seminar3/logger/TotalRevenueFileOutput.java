@@ -4,8 +4,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import se.kth.iv1350.seminar3.SaleObserver;
 import se.kth.iv1350.seminar3.model.CashPayment;
+import se.kth.iv1350.seminar3.model.SaleObserver;
 
 /**
  * Observer used to log total revenue to a file.

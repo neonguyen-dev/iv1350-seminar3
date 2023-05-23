@@ -1,8 +1,6 @@
 package se.kth.iv1350.seminar3.model;
 
-import se.kth.iv1350.seminar3.Amount;
-import se.kth.iv1350.seminar3.ItemDTO;
-import se.kth.iv1350.seminar3.SaleObserver;
+import se.kth.iv1350.seminar3.integration.ItemDTO;
 
 import java.util.ArrayList;
 import java.util.List;

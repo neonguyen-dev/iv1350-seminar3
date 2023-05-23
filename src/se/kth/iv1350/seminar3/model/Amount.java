@@ -1,4 +1,4 @@
-package se.kth.iv1350.seminar3;
+package se.kth.iv1350.seminar3.model;
 
 /**
  * A body that specifies amount to pay in a given sale.

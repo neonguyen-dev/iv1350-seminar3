@@ -1,4 +1,4 @@
-package se.kth.iv1350.seminar3;
+package se.kth.iv1350.seminar3.integration;
 
 /**
  * Enumerator for the constant VAT rates of 6, 12 and 25 percent.

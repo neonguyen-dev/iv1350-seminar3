@@ -1,7 +1,7 @@
 package se.kth.iv1350.seminar3.view;
 
-import se.kth.iv1350.seminar3.SaleObserver;
 import se.kth.iv1350.seminar3.model.CashPayment;
+import se.kth.iv1350.seminar3.model.SaleObserver;
 
 /**
  * Observer responsible for total revenue in View.

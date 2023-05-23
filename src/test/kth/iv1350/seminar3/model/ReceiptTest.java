@@ -6,8 +6,8 @@ import java.time.LocalTime;
 
 import org.junit.Test;
 
-import se.kth.iv1350.seminar3.ItemDTO;
-import se.kth.iv1350.seminar3.VatRate;
+import se.kth.iv1350.seminar3.integration.ItemDTO;
+import se.kth.iv1350.seminar3.integration.VatRate;
 import se.kth.iv1350.seminar3.model.CashPayment;
 import se.kth.iv1350.seminar3.model.Receipt;
 import se.kth.iv1350.seminar3.model.Sale;

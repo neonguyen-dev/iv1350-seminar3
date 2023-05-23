@@ -1,6 +1,5 @@
 package se.kth.iv1350.seminar3.model;
 
-import se.kth.iv1350.seminar3.Amount;
 import java.lang.Math;
 
 /**
