@@ -23,12 +23,15 @@ public class Controller {
     private TotalRevenueFileOutput totalRevenueFileOutput;
 
     /**
-     * Creates a new instance. The controller is being initiated and assigns the dbHandlers, posSystem and printer.
+     * Creates a new instance. The controller is being initiated and assigns the
+     * dbHandlers, posSystem and printer.
+     * 
      * @param printer Represents printer that is inititated through main
-     * @param creator The external system creator that is used to connect to the data bases
+     * @param creator The external system creator that is used to connect to the
+     *                data bases
      * @param balance The balance in the POS system
      */
-    public Controller(Printer printer, ExternalSystemCreator creator, int balance){
+    public Controller(Printer printer, ExternalSystemCreator creator, int balance) {
         inventoryDbHandler = creator.getInventorySystem();
         accountingDbHandler = creator.getAccountingSystem();
         posSystem = new POS(balance);
@@ -41,7 +44,7 @@ public class Controller {
     /**
      * Inititates a new sale
      */
-    public void startSale(){
+    public void startSale() {
         sale = new Sale();
         sale.addSaleObserver(totalRevenueView);
         sale.addSaleObserver(totalRevenueFileOutput);
@@ -49,13 +52,18 @@ public class Controller {
 
     /**
      * Scans an item.
-     * @param itemSerial Used as an item identifier to match it with something in the inventory system
-     * @param quantity The amount of pieces of that item
+     * 
+     * @param itemSerial Used as an item identifier to match it with something in
+     *                   the inventory system
+     * @param quantity   The amount of pieces of that item
      * @return Item with matching item identifier
-     * @throws ItemNotFoundException Exception in case of invalid item identifier
-     * @throws DatabaseCouldNotBeFoundException Exception in case of database not being found
+     * @throws ItemNotFoundException            Exception in case of invalid item
+     *                                          identifier
+     * @throws DatabaseCouldNotBeFoundException Exception in case of database not
+     *                                          being found
      */
-    public ItemDTO scanItem(int itemSerial, int quantity) throws ItemNotFoundException, DatabaseCouldNotBeFoundException{
+    public ItemDTO scanItem(int itemSerial, int quantity)
+            throws ItemNotFoundException, DatabaseCouldNotBeFoundException {
         try {
             ItemDTO mathchingItem = inventoryDbHandler.findItem(itemSerial);
             sale.updateSaleInfo(mathchingItem, quantity);
@@ -63,8 +71,7 @@ public class Controller {
         } catch (ItemNotFoundException e) {
             fileLogger.log(e.getMessage());
             throw e;
-        }
-        catch(DatabaseCouldNotBeFoundException e){
+        } catch (DatabaseCouldNotBeFoundException e) {
             fileLogger.log(e.getMessage());
             throw e;
         }
@@ -72,17 +79,19 @@ public class Controller {
 
     /**
      * Ends the sale
+     * 
      * @return The total amount of the sale
      */
-    public Amount endSale(){
+    public Amount endSale() {
         return sale.getAmount();
     }
 
     /**
      * The customer hands over the cash and is currently paying.
+     * 
      * @param paidAmount The amount that the customer is handing over.
      */
-    public void pay(int paidAmount){
+    public void pay(int paidAmount) {
         payment = new CashPayment(paidAmount);
         payment.calculatePayment(sale.getAmount());
         sale.pay(posSystem, payment);

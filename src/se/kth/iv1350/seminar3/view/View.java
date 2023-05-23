@@ -23,7 +23,7 @@ public class View {
      * Tests a sample of the program
      */
     public void test() {
-        int[] serialNumbers = { 0, 1, 2, 3, 4 };
+        int[] serialNumbers = { 0, 1, 2, 3, 4, 5, 6 };
         contr.startSale();
         for (int i = 0; i < serialNumbers.length; i++) {
             try {
