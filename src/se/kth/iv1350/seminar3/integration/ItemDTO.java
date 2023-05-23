@@ -1,4 +1,4 @@
-package se.kth.iv1350.seminar3;
+package se.kth.iv1350.seminar3.integration;
 
 /**
  * Collection of data of an item.
