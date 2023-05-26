@@ -7,5 +7,5 @@ public interface SaleObserver {
     /**
      * Invoked when a sale has been finalized.
      */
-    public void newSale(CashPayment payment);
+    public void newSale(int total);
 }

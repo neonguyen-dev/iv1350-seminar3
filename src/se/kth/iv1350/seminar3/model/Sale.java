@@ -84,7 +84,7 @@ public class Sale {
      */
     public void notifyObservers(CashPayment payment){
         for (SaleObserver observer : saleObservers) {
-            observer.newSale(payment);
+            observer.newSale(payment.getTotal());
         }
     }
 }

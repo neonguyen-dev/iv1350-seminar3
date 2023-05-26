@@ -17,7 +17,6 @@ public class Controller {
     private Sale sale;
     private CashPayment payment;
     private FileLogger fileLogger;
-    private TotalRevenueView totalRevenueView;
     private TotalRevenueFileOutput totalRevenueFileOutput;
 
     /**
@@ -35,14 +34,14 @@ public class Controller {
         posSystem = new POS(balance);
         this.printer = printer;
         fileLogger = new FileLogger();
-        totalRevenueView = new TotalRevenueView();
-        totalRevenueFileOutput = new TotalRevenueFileOutput();
+        
     }
 
     /**
-     * Inititates a new sale
+     * Initiates a new sale with observers.
+     * @param totalRevenueView View sale observer.
      */
-    public void startSale() {
+    public void startSale(TotalRevenueView totalRevenueView) {
         sale = new Sale();
         sale.addSaleObserver(totalRevenueView);
         sale.addSaleObserver(totalRevenueFileOutput);
