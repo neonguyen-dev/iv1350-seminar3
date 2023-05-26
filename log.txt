@@ -1,6 +1,6 @@
-[Ljava.lang.StackTraceElement;@70dea4e
-[Ljava.lang.StackTraceElement;@5c647e05
+Item with identifier "4" could not be found in InventorySystem
+Item with identifier "5" could not be found in InventorySystem
 InventorySystem could not be reached
-[Ljava.lang.StackTraceElement;@2d98a335
-[Ljava.lang.StackTraceElement;@16b98e56
+Item with identifier "4" could not be found in InventorySystem
+Item with identifier "5" could not be found in InventorySystem
 InventorySystem could not be reached

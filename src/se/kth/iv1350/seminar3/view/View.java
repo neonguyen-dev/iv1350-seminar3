@@ -2,8 +2,8 @@ package se.kth.iv1350.seminar3.view;
 
 import se.kth.iv1350.seminar3.controller.*;
 import se.kth.iv1350.seminar3.integration.DatabaseCouldNotBeFoundException;
+import se.kth.iv1350.seminar3.integration.ItemDTO;
 import se.kth.iv1350.seminar3.integration.ItemNotFoundException;
-import se.kth.iv1350.seminar3.logger.TotalRevenueFileOutput;
 
 /**
  * Following program has no view. Class is used as a placeholder.
@@ -20,7 +20,6 @@ public class View {
     public View(Controller contr) {
         this.contr = contr;
         totalRevenueView = new TotalRevenueView();
-        totalRevenueFileOutput = new TotalRevenueFileOutput();
     }
 
     /**
@@ -31,7 +30,10 @@ public class View {
         contr.startSale(totalRevenueView);
         for (int i = 0; i < serialNumbers.length; i++) {
             try {
-                contr.scanItem(serialNumbers[i], 1);
+                ItemDTO tempItem = contr.scanItem(serialNumbers[i], 1);
+                System.out.println("Item: " + tempItem.getName());
+                System.out.println("Price: " + tempItem.getPrice());
+                System.out.println("Running total: " + tempItem.getRunningTotal() + "\n");
             } catch (ItemNotFoundException e) {
                 System.out.println("Item with serial number "  + e.getInvalidItemIdentifier() + " was not found");
             }
@@ -45,7 +47,10 @@ public class View {
         contr.startSale(totalRevenueView);
         for (int i = 0; i < serialNumbers.length; i++) {
             try {
-                contr.scanItem(serialNumbers[i], 1);
+                ItemDTO tempItem = contr.scanItem(serialNumbers[i], 1);
+                System.out.println("Item: " + tempItem.getName());
+                System.out.println("Price: " + tempItem.getPrice());
+                System.out.println("Running total: " + tempItem.getRunningTotal() + "\n");
             } catch (ItemNotFoundException e) {
                 System.out.println("Item with serial number "  + e.getInvalidItemIdentifier() + " was not found");
             }

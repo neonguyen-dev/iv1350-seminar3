@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import se.kth.iv1350.seminar3.model.CashPayment;
 import se.kth.iv1350.seminar3.model.SaleObserver;
 
 /**
@@ -12,7 +11,7 @@ import se.kth.iv1350.seminar3.model.SaleObserver;
  */
 public class TotalRevenueFileOutput implements SaleObserver {
     private PrintWriter logWriter;
-    private float totalSale;
+    private int totalSale;
 
     /**
      * Creates a new instance.
@@ -41,8 +40,8 @@ public class TotalRevenueFileOutput implements SaleObserver {
      * 
      * @param payment The payment of the sale
      */
-    public void newSale(CashPayment payment) {
-        totalSale += payment.getTotal();
+    public void newSale(int total) {
+        totalSale += total;
         log("Total cost since program started: " + totalSale);
     }
 }

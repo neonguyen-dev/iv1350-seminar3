@@ -1,2 +1,2 @@
-Total cost since program started: 107.0
-Total cost since program started: 214.0
+Total cost since program started: 107
+Total cost since program started: 214

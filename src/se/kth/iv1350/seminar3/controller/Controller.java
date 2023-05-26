@@ -34,7 +34,7 @@ public class Controller {
         posSystem = new POS(balance);
         this.printer = printer;
         fileLogger = new FileLogger();
-        
+        totalRevenueFileOutput = new TotalRevenueFileOutput();
     }
 
     /**
