@@ -10,7 +10,7 @@ import se.kth.iv1350.seminar3.integration.ItemNotFoundException;
  */
 public class View {
     private Controller contr;
-    
+
     /**
      * Creates a new instance
      * 

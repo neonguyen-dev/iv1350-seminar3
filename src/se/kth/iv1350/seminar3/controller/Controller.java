@@ -1,10 +1,11 @@
 package se.kth.iv1350.seminar3.controller;
 
+import java.util.ArrayList;
+
 import se.kth.iv1350.seminar3.integration.*;
 import se.kth.iv1350.seminar3.logger.FileLogger;
 import se.kth.iv1350.seminar3.logger.TotalRevenueFileOutput;
 import se.kth.iv1350.seminar3.model.*;
-import se.kth.iv1350.seminar3.view.TotalRevenueView;
 
 /**
  * Represents the Controller of the MVC-layer.
@@ -17,8 +18,7 @@ public class Controller {
     private Sale sale;
     private CashPayment payment;
     private FileLogger fileLogger;
-    private TotalRevenueFileOutput totalRevenueFileOutput;
-    private TotalRevenueView totalRevenueView;
+    private ArrayList<SaleObserver> saleObservers;
 
     /**
      * Creates a new instance. The controller is being initiated and assigns the
@@ -35,23 +35,25 @@ public class Controller {
         posSystem = new POS(balance);
         this.printer = printer;
         fileLogger = new FileLogger();
-        totalRevenueFileOutput = new TotalRevenueFileOutput();
+        saleObservers = new ArrayList<>();
+        saleObservers.add(new TotalRevenueFileOutput());
     }
 
     /**
-     * Adds an observer of TotalRevenueView in controller
-     * @param totalRevenueView Sale observer concerning the view
+     * Adds a SaleObserver to controller
+     * 
+     * @param saleObserver SaleObserver to be added to controller
      */
-    public void addObserver(TotalRevenueView totalRevenueView){
-        this.totalRevenueView = totalRevenueView;
+    public void addObserver(SaleObserver saleObserver) {
+        saleObservers.add(saleObserver);
     }
+
     /**
      * Initiates a new sale with observers.
      */
     public void startSale() {
         sale = new Sale();
-        sale.addSaleObserver(totalRevenueView);
-        sale.addSaleObserver(totalRevenueFileOutput);
+        sale.addSaleObserver(saleObservers);
     }
 
     /**
