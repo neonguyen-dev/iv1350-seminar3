@@ -82,7 +82,7 @@ public class Sale {
      * Notifies the sale observers and calls on newSale.
      * @param payment Payment of the sale.
      */
-    public void notifyObservers(CashPayment payment){
+    private void notifyObservers(CashPayment payment){
         for (SaleObserver observer : saleObservers) {
             observer.newSale(payment.getTotal());
         }

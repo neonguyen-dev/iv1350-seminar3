@@ -18,6 +18,7 @@ public class Controller {
     private CashPayment payment;
     private FileLogger fileLogger;
     private TotalRevenueFileOutput totalRevenueFileOutput;
+    private TotalRevenueView totalRevenueView;
 
     /**
      * Creates a new instance. The controller is being initiated and assigns the
@@ -38,10 +39,16 @@ public class Controller {
     }
 
     /**
-     * Initiates a new sale with observers.
-     * @param totalRevenueView View sale observer.
+     * Adds an observer of TotalRevenueView in controller
+     * @param totalRevenueView Sale observer concerning the view
      */
-    public void startSale(TotalRevenueView totalRevenueView) {
+    public void addObserver(TotalRevenueView totalRevenueView){
+        this.totalRevenueView = totalRevenueView;
+    }
+    /**
+     * Initiates a new sale with observers.
+     */
+    public void startSale() {
         sale = new Sale();
         sale.addSaleObserver(totalRevenueView);
         sale.addSaleObserver(totalRevenueFileOutput);

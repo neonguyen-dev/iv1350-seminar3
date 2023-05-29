@@ -10,8 +10,7 @@ import se.kth.iv1350.seminar3.integration.ItemNotFoundException;
  */
 public class View {
     private Controller contr;
-    private TotalRevenueView totalRevenueView;
-
+    
     /**
      * Creates a new instance
      * 
@@ -19,7 +18,7 @@ public class View {
      */
     public View(Controller contr) {
         this.contr = contr;
-        totalRevenueView = new TotalRevenueView();
+        contr.addObserver(new TotalRevenueView());
     }
 
     /**
@@ -27,7 +26,7 @@ public class View {
      */
     public void test() {
         int[] serialNumbers = { 0, 1, 2, 3, 4, 5, 6 };
-        contr.startSale(totalRevenueView);
+        contr.startSale();
         for (int i = 0; i < serialNumbers.length; i++) {
             try {
                 ItemDTO tempItem = contr.scanItem(serialNumbers[i], 1);
@@ -44,7 +43,7 @@ public class View {
         contr.endSale();
         contr.pay(200);
 
-        contr.startSale(totalRevenueView);
+        contr.startSale();
         for (int i = 0; i < serialNumbers.length; i++) {
             try {
                 ItemDTO tempItem = contr.scanItem(serialNumbers[i], 1);
